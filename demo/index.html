@@ -1,0 +1,64 @@
+<html>
+<head>
+  <title>Opossum Circuit Breaker Example</title>
+  <script type='text/javascript' src="/jquery.js"></script>
+  <script type='text/javascript' src="/opossum.js"></script>
+  <script type='text/javascript' src="/app.js"></script>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 1em;
+    }
+    button {
+      padding: 1ex 1em;
+      margin-right: 1em;
+      font-size: larger;
+    }
+    .row {
+      padding: 1em;
+      width: 100%
+    }
+    h2 {
+      border-bottom: 1px dotted #999;
+    }
+    .clear {
+      cursor: pointer;
+      color: #3336ff;
+    }
+    .success {
+      color: darkgreen
+    }
+    .open {
+      color: red
+    }
+    .fallback {
+      color: darkblue
+    }
+    .rejected {
+      color: darkorange
+    }
+    .close {
+      color: green
+    }
+    .timeout {
+      color: darksalmon
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Circuit Breaker Example</h1>
+    <div class="row">
+      <button type="button" id="flakey">
+        Flakey Service
+      </button>
+    </div>
+
+    <div class="row">
+      <h2>FLAKEY RESPONSES</h2>
+      <span class="clear">Click to clear</span>
+      <div id="flakeyResponse"></div>
+    </div>
+  </div>
+</body>
+</html>

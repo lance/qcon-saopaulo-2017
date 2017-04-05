@@ -1,0 +1,47 @@
+{
+  "name": "qcon-saopaulo-2017",
+  "version": "0.0.1",
+  "author": "Red Hat, Inc.",
+  "license": "Apache-2.0",
+  "scripts": {
+    "lint": "eslint server.js"
+  },
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lance/qcon-saopaulo-2017.git"
+  },
+  "files": [
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "server.js",
+    "demo",
+    "public"
+  ],
+  "bugs": {
+    "url": "https://github.com/lance/qcon-saopaulo-2017/issues"
+  },
+  "homepage": "https://github.com/lance/qcon-saopaulo-2017",
+  "devDependencies": {
+    "eslint": "~3.8.1",
+    "eslint-config-semistandard": "~7.0.0",
+    "eslint-config-standard": "~6.2.0",
+    "eslint-plugin-promise": "~3.3.0",
+    "eslint-plugin-react": "~6.4.1",
+    "eslint-plugin-standard": "~2.0.1"
+  },
+  "description": "Slide presentation for QCon Sao Paulo 2017",
+  "keywords": [
+    "microservice",
+    "presentation",
+    "patterns",
+    "circuit-breaker"
+  ],
+  "dependencies": {
+    "hapi": "~16.1.0",
+    "jquery": "~3.2.1",
+    "node-static": "~0.7.9",
+    "opossum": "~0.6.0"
+  }
+}

@@ -1,0 +1,54 @@
+body { font-family: 'Open Sans'; }
+
+h1, h2, h3 {
+  font-family: 'Raleway';
+  font-weight: bold;
+}
+
+a {
+  color: darkslategray;
+}
+
+.remark-code, .remark-inline-code {
+  font-family: 'Ubuntu Mono';
+  font-size: 24px;
+}
+
+ul {
+  list-style-image: url("rarrow.png");
+  color:#636363;
+  font-size:36px;
+  margin-left: 40px;
+}
+
+ul li { line-height:130%; }
+
+div.footer {
+  position: absolute;
+  bottom: 0;
+  font-family: 'Raleway';
+  font-size: smaller;
+  font-weight: lighter;
+  width: 80%;
+  text-align: left;
+}
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
+  font-size: 200%;
+  color: #636363;
+}
