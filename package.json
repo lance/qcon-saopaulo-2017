@@ -17,7 +17,7 @@
     "LICENSE",
     "server.js",
     "demo",
-    "public"
+    "docs"
   ],
   "bugs": {
     "url": "https://github.com/lance/qcon-saopaulo-2017/issues"
