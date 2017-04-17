@@ -42,6 +42,6 @@
     "hapi": "~16.1.0",
     "jquery": "~3.2.1",
     "node-static": "~0.7.9",
-    "opossum": "~0.6.0"
+    "opossum": "~1.0.0"
   }
 }

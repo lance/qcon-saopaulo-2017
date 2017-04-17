@@ -114,51 +114,36 @@ class: center, middle
 ## Wait... isn't this the UX track?
 
 ---
-class: center
-
 ## Service Lifecycle
-
---
 
 ![Microservice lifecycle](lifecycle.png)
 
 --
 
 * Client makes a request
-
 --
 
 * Server provides a response
-
 --
 
 * Often using HTTP transport
-
 --
 
 * Often with JSON data format
-
 ---
-class: center
-
 ## In the Browser
-
---
 
 ![Browser request lifecycle](browser-lifecycle.png)
 
 --
 
 * XMLHttpRequest
-
 --
 
 * JQuery
-
 --
 
 * AJAX
-
 ---
 class: center
 
@@ -178,6 +163,12 @@ class: center, middle
 
 ## Operational Complexity
 
+???
+OPERATIONAL COMPLEXITY
+
+µ-services are not inherently simpler. The complexity is shifted
+from code and design to systems and operations.
+
 ---
 
 class: center
@@ -188,12 +179,6 @@ class: center
   <source src="https://video.twimg.com/tweet_video/C7sOlUjVYAEzz0y.mp4" type="video/mp4">
 
 https://twitter.com/ThePracticalDev/status/845285541528719360
-
-???
-OPERATIONAL COMPLEXITY
-
-µ-services are not inherently simpler. The complexity is shifted
-from code and design to systems and operations.
 
 ---
 
@@ -207,9 +192,6 @@ from code and design to systems and operations.
 
 * Network saturation
 
---
-
-* Transitive dependencies
 
 --
 
@@ -218,6 +200,10 @@ from code and design to systems and operations.
 --
 
 * Disk failure
+
+--
+
+* Transitive dependencies
 
 ???
 
@@ -233,9 +219,7 @@ class: center
 
 ---
 
-class: center
-
-## Umm, wow
+class: center, middle
 
 ![Sysiphus](giphy.gif)
 
@@ -285,6 +269,8 @@ class: middle, center
 
 ---
 class: middle, center
+
+## Circuit State
 
 ![State](state.png)
 
@@ -419,10 +405,28 @@ Use the error output to point out the need for a fallback
 ### Provides default behavior in case of error
 
 ```js
-circuit.fallback((file) => `Sorry, I can't read ${file}`);
+*circuit.fallback((file) => `Sorry, I can't read ${file}`);
 
 // Fallback function is still a success case
 circuit.fire('./package.jsob')
+  .then((data) => console.log(`package.json: \n${data}`))
+  .catch((err) => console.error(`ERR: ${err}`));
+```
+
+???
+A circuit breaker's fallback is just a function. But you can also
+supply a circuit as a fallback. Neat, huh?
+---
+
+## Circuit Breaker Fallback
+
+### Provides default behavior in case of error
+
+```js
+circuit.fallback((file) => `Sorry, I can't read ${file}`);
+
+// Fallback function is still a success case
+*circuit.fire('./package.jsob')
   .then((data) => console.log(`package.json: \n${data}`))
   .catch((err) => console.error(`ERR: ${err}`));
 ```
@@ -437,6 +441,16 @@ Go back to the console to demonstrate this. But DO NOT USE MULTILINE.
 
 ```js
 const now = circuitBreaker(Date, { cache: true });
+```
+
+--
+```js
+circuit.fire().then(console.log);
+// Mon Apr 10 2017 12:10:26 GMT-0400 (EDT)
+circuit.fire().then(console.log);
+// Mon Apr 10 2017 12:10:26 GMT-0400 (EDT)
+circuit.fire().then(console.log);
+// Mon Apr 10 2017 12:10:26 GMT-0400 (EDT)
 ```
 
 ---
@@ -456,36 +470,96 @@ setInterval(_ => temp.clearCache(), 3000);
 ---
 
 ## Events
----------------------------
-|fallback |open |halfOpen |
 
 Circuit breakers are event emitters
+
 
 ```js
   // Update the UI specifically for timeout errors
   circuit.on('timeout',
     () => $(element).prepend(
-      makeNode(`TIMEOUT: ${route} is taking too long to respond.`)));
+      mkNode(`${route} is taking too long to respond.`)));
 ```
+--
+<div style='float:left;width:50%'>
+<ul class='events'>
+  <li>`fire`</li>
+  <li>`reject`</li>
+  <li>`timeout`</li>
+  <li>`success`</li>
+  <li>`failure`</li>
+</ul>
+</div>
 
-|fallback |open |halfOpen |
-
-|`close` | `fire` | `reject` |
-|`timeout` | `success` | `failure` |
+<div style='float:right;width:50%'>
+<ul class='events'>
+  <li>`open`</li>
+  <li>`close`</li>
+  <li>`halfOpen`</li>
+  <li>`fallback`</li>
+  <li>`snapshot`</li>
+</ul>
+</div>
 
 ---
 
 ## Status
 
-Rolling statistical window
+```js
+*// create a 10 sec window with 10 buckets of 1 sec
+*const circuit = circuitBreaker(asyncFunc, {
+*  rollingCountTimeout: 10000,
+*  rollingCountBuckets: 10
+*});
 
-.pure-table.pure-table-bordered.pure-table-striped.smaller-font[
-  |header1 | header 2|
-  |--------|---------|
-  | 1      | 2       |
-  | 3      | 4       |
-]
+// status is calculated every time status is accessed
+const status = circuit.status
 
+// print the entire statistical window
+console.log(status.window);
+
+// print the rolling stats
+console.log(status.stats);
+```
+
+---
+
+## Status
+
+```js
+// create a 10 sec window with 10 buckets of 1 sec
+const circuit = circuitBreaker(asyncFunc, {
+  rollingCountTimeout: 10000,
+  rollingCountBuckets: 10
+});
+
+*// status is calculated every time status is accessed
+*const status = circuit.status
+
+// print the entire statistical window
+console.log(status.window);
+
+// print the rolling stats
+console.log(status.stats);
+```
+
+---
+## Status
+
+```js
+// print the rolling stats
+console.log(status.stats);
+
+*// { failures: 3,
+*//   fallbacks: 4,
+*//   successes: 44,
+*//   rejects: 4,
+*//   fires: 48,
+*//   timeouts: 1,
+*//   cacheHits: 0,
+*//   cacheMisses: 0 }
+
+```
 
 ---
 
@@ -494,12 +568,15 @@ Rolling statistical window
 ---
 class: center
 
-## Finally
+## Questions?
 
-* Lance Ball
-* http://lanceball.com
-* Twitter - @lanceball
-* GitHub - @lance
+<div class='center'>
+http://lanceball.com /
+Twitter - @lanceball /
+GitHub - @lance
+</div>
+
+![questions](handsup.png)
 
 ---
 
