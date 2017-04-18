@@ -458,13 +458,13 @@ circuit.fire().then(console.log);
 ## When is this useful?
 
 * Frequent hits, infrequent change
-* E.g. temperature
+* E.g. username
 
 ```js
-const temp = circuitBreaker(fetchTemperature, { cache: true });
+const username = circuitBreaker(fetchUsername, { cache: true });
 
 // periodically clear the cache
-setInterval(_ => temp.clearCache(), 3000);
+setInterval(_ => username.clearCache(), 5000);
 ```
 
 ---
@@ -476,7 +476,7 @@ Circuit breakers are event emitters
 
 ```js
   // Update the UI specifically for timeout errors
-  circuit.on('timeout',
+*  circuit.on('timeout',
     () => $(element).prepend(
       mkNode(`${route} is taking too long to respond.`)));
 ```
