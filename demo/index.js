@@ -17,7 +17,7 @@ server.register(require('inert', (err) => possibleError(err)));
 [ ['/', path.join(__dirname, 'index.html')],
   ['/app.js', path.join(__dirname, 'app.js')],
   ['/jquery.js', path.join(__dirname, 'node_modules', 'jquery', 'dist', 'jquery.js')],
-  ['/opossum.js', path.join(__dirname, 'opossum.js')]
+  ['/opossum.js', path.join(__dirname, '.', 'opossum.js')]
 ].map((entry) => {
   server.route({
     method: 'GET',
