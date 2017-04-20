@@ -19,6 +19,12 @@ Red Hat
 
 ---
 
+class: center, middle
+
+![Rainbow wheel](rainbow-wheel.jpg)
+
+---
+
 class: center
 
 ## Who am I?
@@ -563,21 +569,27 @@ console.log(status.stats);
 
 ---
 
+## Dashboard
+
+![Hystrix Dashboard](dashboard-annoted-circuit-640.png)
+<div class='right' style='font-size:small'>http://techblog.netflix.com/2012/12/hystrix-dashboard-and-turbine.html</div>
+
+---
 ## Demo
 
 ---
 class: center
 
-## Questions?
+## Thanks & Questions
 
-<div class='center'>
-http://lanceball.com /
-Twitter - @lanceball /
+<span class='left'>
+http://lanceball.com/qcon-saopaulo-2017/<br/>
+https://github.com/lance/qcon-saopaulo-2017<br/>
+Twitter - @lanceball<br/>
 GitHub - @lance
-</div>
+</span>
 
-![questions](handsup.png)
+<span class='right'>
+<img src='handsup.png' alt='questions'/>
+</span>
 
----
-
-## Questions
