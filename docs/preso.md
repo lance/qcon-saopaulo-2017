@@ -414,7 +414,7 @@ Use the error output to point out the need for a fallback
 *circuit.fallback((file) => `Sorry, I can't read ${file}`);
 
 // Fallback function is still a success case
-circuit.fire('./package.jsob')
+circuit.fire('./package.json')
   .then((data) => console.log(`package.json: \n${data}`))
   .catch((err) => console.error(`ERR: ${err}`));
 ```
@@ -432,7 +432,7 @@ supply a circuit as a fallback. Neat, huh?
 circuit.fallback((file) => `Sorry, I can't read ${file}`);
 
 // Fallback function is still a success case
-*circuit.fire('./package.jsob')
+*circuit.fire('./package.json')
   .then((data) => console.log(`package.json: \n${data}`))
   .catch((err) => console.error(`ERR: ${err}`));
 ```
