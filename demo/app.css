@@ -1,0 +1,27 @@
+body {
+  margin: 20px;
+}
+
+body.demo {
+  margin: 40px 60px;
+}
+#stats, #flakeyResponse {
+  border: 1px solid burlywood;
+  padding: 10px;
+  font-size: large;
+}
+
+@page {
+  size: 1920px 1080px;
+  margin: 0;
+}
+
+@media print {
+  .remark-slide-scaler {
+    width: 100% !important;
+    height: 100% !important;
+    transform: scale(1) !important;
+    top: 0 !important;
+    left: 200px !important;
+  }
+}

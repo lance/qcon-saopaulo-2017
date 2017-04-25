@@ -19,12 +19,6 @@ Red Hat
 
 ---
 
-class: center, middle
-
-![Rainbow wheel](rainbow-wheel.jpg)
-
----
-
 class: center
 
 ## Who am I?
@@ -580,9 +574,9 @@ console.log(status.stats);
 ---
 class: center
 
-## Thanks & Questions
+## Obrigado & Questions
 
-<span class='left'>
+<span class='left' style='font-size:large'>
 http://lanceball.com/qcon-saopaulo-2017/<br/>
 https://github.com/lance/qcon-saopaulo-2017<br/>
 Twitter - @lanceball<br/>

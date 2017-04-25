@@ -15,9 +15,14 @@ server.connection({
 server.register(require('inert', (err) => possibleError(err)));
 
 [ ['/', path.join(__dirname, 'index.html')],
+  ['/login', path.join(__dirname, 'login.html')],
   ['/app.js', path.join(__dirname, 'app.js')],
+  ['/app.css', path.join(__dirname, 'app.css')],
+  ['/nyancat.gif', path.join(__dirname, 'nyancat.gif')],
+  ['/bootstrap.min.js', path.join(__dirname, 'node_modules', 'bootstrap', 'dist', 'js', 'bootstrap.min.js')],
+  ['/bootstrap.min.css', path.join(__dirname, 'node_modules', 'bootstrap', 'dist', 'css', 'bootstrap.min.css')],
   ['/jquery.js', path.join(__dirname, 'node_modules', 'jquery', 'dist', 'jquery.js')],
-  ['/opossum.js', path.join(__dirname, '.', 'opossum.js')]
+  ['/opossum.js', path.join(__dirname, 'node_modules', 'opossum', 'dist', 'opossum.js')]
 ].map((entry) => {
   server.route({
     method: 'GET',
